@@ -119,13 +119,18 @@
   #history { padding-top: 96px; padding-bottom: 96px; display: flex; flex-wrap: wrap; gap: 48px; }
   .history-intro { flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px; }
   .history-intro p { margin: 0; font-size: 18px; line-height: 1.55; max-width: 420px; }
-  .history-list { flex: 999 1 560px; min-width: 0; border-top: 4px solid var(--ink); }
-  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 22px 0; border-bottom: 2px solid var(--ink); }
-  .row-art { width: 88px; height: 88px; object-fit: cover; border: 3px solid var(--ink); border-radius: 10px; box-shadow: 4px 4px 0 var(--ink); flex: none; }
-  .row .what { flex: 1 1 220px; min-width: 0; }
-  .row .what b { display: block; font-size: 20px; }
-  .row .what span { display: block; font-size: 15px; color: var(--muted); }
-  .row a { font-weight: 700; font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; }
+  .history-body { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+  .label { margin: 0; padding-top: 16px; border-top: 4px solid var(--ink); font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+  .album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 32px; margin-bottom: 24px; }
+  .album { display: flex; flex-direction: column; gap: 14px; }
+  .album-art { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 3px solid var(--ink); border-radius: 14px; box-shadow: 6px 6px 0 var(--ink); }
+  .album h3 { font-size: 26px; line-height: 1.1; }
+  .album p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  .album-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .play-album { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; background: var(--accent); color: var(--ink); border: 3px solid var(--ink); border-radius: 999px; box-shadow: 3px 3px 0 var(--ink); font: 700 15px 'DM Sans', sans-serif; cursor: pointer; }
+  .play-album:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+  .bc-player { width: 100%; height: 472px; border: 3px solid var(--ink); border-radius: 14px; background: #fff; display: block; }
+  .wp-video { max-width: 640px; }
 
   /* Footer */
   footer { background: var(--accent); border-top: 4px solid var(--ink); }
@@ -274,21 +279,33 @@
       <h2>BEFORE THE BEE</h2>
       <p>Before going solo, BeeShine (then known as <b>Event</b>) and fellow MC <b>Remsa</b> made up the duo <b>weatherPROOF</b>. Two albums and a whole lot of reps that built the flow.</p>
     </div>
-    <div class="history-list">
-      <div class="row">
-        <img class="row-art" src="images/wp-dirty-naturals.jpg" alt="weatherPROOF Dirty Naturals album cover" loading="lazy">
-        <span class="what"><b>Dirty Naturals</b><span>weatherPROOF · Album · Released January 2013</span></span>
-        <a href="https://weatherproofmusic.bandcamp.com/album/dirty-naturals" target="_blank" rel="noopener">Listen on Bandcamp →</a>
+    <div class="history-body">
+      <p class="label">weatherPROOF · Albums</p>
+      <div class="album-grid">
+          <article class="album">
+            <img class="album-art" src="images/wp-dirty-naturals.jpg" alt="Dirty Naturals album cover" loading="lazy">
+            <div><h3>Dirty Naturals</h3><p>Album · January 2013 · 15 tracks</p></div>
+            <div class="album-actions">
+              <button type="button" class="play-album" data-bc="3596215166" data-title="Dirty Naturals"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg> Play album</button>
+              <a class="tag" href="https://weatherproofmusic.bandcamp.com/album/dirty-naturals" target="_blank" rel="noopener">Bandcamp ↗</a>
+            </div>
+          </article>
+          <article class="album">
+            <img class="album-art" src="images/wp-metropolis.jpg" alt="Metropolis album cover" loading="lazy">
+            <div><h3>Metropolis</h3><p>Album · January 2009 · 13 tracks (10th anniversary edition)</p></div>
+            <div class="album-actions">
+              <button type="button" class="play-album" data-bc="1040782952" data-title="Metropolis"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg> Play album</button>
+              <a class="tag" href="https://weatherproofmusic.bandcamp.com/album/metropolis-10th-anniversary-release" target="_blank" rel="noopener">Bandcamp ↗</a>
+            </div>
+          </article>
       </div>
-      <div class="row">
-        <img class="row-art" src="https://i.ytimg.com/vi/jOsDF2GZ9BU/mqdefault.jpg" alt="Yellow Brick Road music video thumbnail" loading="lazy">
-        <span class="what"><b>Yellow Brick Road</b><span>weatherPROOF feat. DJ A-Sharp · Music video · Prod. by Muse:Ack · from Dirty Naturals</span></span>
-        <a href="https://www.youtube.com/watch?v=jOsDF2GZ9BU" target="_blank" rel="noopener">Watch on YouTube →</a>
-      </div>
-      <div class="row">
-        <img class="row-art" src="images/wp-metropolis.jpg" alt="weatherPROOF Metropolis album cover" loading="lazy">
-        <span class="what"><b>Metropolis</b><span>weatherPROOF · Album · Released January 2009</span></span>
-        <a href="https://weatherproofmusic.bandcamp.com/album/metropolis-10th-anniversary-release" target="_blank" rel="noopener">Listen on Bandcamp →</a>
+      <p class="label">weatherPROOF · Music video</p>
+      <div class="vcard wp-video">
+        <a class="thumb" href="https://www.youtube.com/watch?v=jOsDF2GZ9BU" data-play="jOsDF2GZ9BU" aria-label="Play Yellow Brick Road" target="_blank" rel="noopener">
+          <img src="https://i.ytimg.com/vi/jOsDF2GZ9BU/maxresdefault.jpg" data-yt="jOsDF2GZ9BU" loading="lazy" alt="">
+          <span class="play"><svg width="28" height="28" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2.5v11l9-5.5z" fill="#111"/></svg></span>
+        </a>
+        <div class="vmeta"><h3>Yellow Brick Road <small style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; display: block; margin-top: 6px; color: var(--muted); line-height: 1.4;">feat. DJ A-Sharp · Prod. by Muse:Ack · from Dirty Naturals</small></h3><a class="tag" href="https://www.youtube.com/watch?v=jOsDF2GZ9BU" target="_blank" rel="noopener">YouTube ↗</a></div>
       </div>
     </div>
   </section>
@@ -365,6 +382,22 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(restore);
     addEventListener('load', restore);
   })();
+</script>
+<script>
+  // Click to load the Bandcamp player in place of an album's cover.
+  document.querySelectorAll('.play-album').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var album = btn.closest('.album');
+      var frame = document.createElement('iframe');
+      frame.className = 'bc-player';
+      frame.title = btn.dataset.title + ' by weatherPROOF (Bandcamp player)';
+      frame.src = 'https://bandcamp.com/EmbeddedPlayer/album=' + btn.dataset.bc + '/size=large/bgcol=ffffff/linkcol=111111/tracklist=true/artwork=small/transparent=true/';
+      frame.setAttribute('seamless', '');
+      album.querySelector('.album-art').replaceWith(frame);
+      btn.remove();
+      frame.focus();
+    });
+  });
 </script>
 </body>
 </html>
