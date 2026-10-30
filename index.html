@@ -84,7 +84,8 @@
   .singles .wrap { padding-top: 96px; padding-bottom: 96px; }
   .singles h2 { color: var(--accent); }
   .singles .note { margin: 0; font-family: var(--marker); font-size: 24px; color: var(--wing); }
-  .single-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; }
+  .single-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; }
+  .cover-art { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 3px solid var(--paper); border-radius: 14px; box-shadow: 6px 6px 0 var(--accent); }
   .single { display: flex; flex-direction: column; gap: 16px; }
   .cover { aspect-ratio: 1 / 1; border: 3px dashed var(--wing); border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #1E1E1C; color: var(--wing); text-align: center; padding: 24px; }
   .cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
@@ -178,7 +179,7 @@
   <section class="wrap" id="videos">
     <div class="section-head">
       <h2>VIDEOS</h2>
-      <a href="#" style="font-weight: 700; font-size: 16px;"><!-- TODO: YouTube channel URL -->Full channel on YouTube →</a>
+      <a href="https://www.youtube.com/@BeeShineMusic/videos" target="_blank" rel="noopener" style="font-weight: 700; font-size: 16px;">Full channel on YouTube →</a>
     </div>
     <div class="video-grid">
       <a class="vcard" href="https://www.youtube.com/watch?v=Gboqs4tfup8" target="_blank" rel="noopener">
@@ -223,21 +224,25 @@
         <p class="note">out now, everywhere</p>
       </div>
       <div class="single-grid">
-        <!-- TODO: replace each .cover placeholder with <img src="images/single-1.jpg" alt="..."> -->
         <article class="single">
-          <div class="cover"><strong>[Single 1 cover art]</strong><span>Square, 3000×3000</span></div>
-          <div><h3>[Single 1 title]</h3><p>[Release date] · Single</p></div>
-          <div class="chips"><a class="chip" href="#">Spotify</a><a class="chip" href="#">Apple Music</a></div>
+          <img class="cover-art" src="images/single-rap-is-outta-control.jpg" alt="Rap Is Outta Control (Freestyle) cover art" loading="lazy">
+          <div><h3>Rap Is Outta Control (Freestyle)</h3><p>Prod. by The Real DJ A.P.</p></div>
+          <div class="chips"><a class="chip" href="https://www.youtube.com/watch?v=ief4LvJAd6U" target="_blank" rel="noopener">Watch video</a><a class="chip" href="#listen">Stream</a></div>
         </article>
         <article class="single">
-          <div class="cover"><strong>[Single 2 cover art]</strong><span>Square, 3000×3000</span></div>
-          <div><h3>[Single 2 title]</h3><p>[Release date] · Single</p></div>
-          <div class="chips"><a class="chip" href="#">Spotify</a><a class="chip" href="#">Apple Music</a></div>
+          <img class="cover-art" src="images/single-i-want-it-all.jpg" alt="I Want It All cover art" loading="lazy">
+          <div><h3>I Want It All</h3><p>Single</p></div>
+          <div class="chips"><a class="chip" href="https://www.youtube.com/watch?v=Gboqs4tfup8" target="_blank" rel="noopener">Watch video</a><a class="chip" href="#listen">Stream</a></div>
         </article>
         <article class="single">
-          <div class="cover"><strong>[Single 3 cover art]</strong><span>Square, 3000×3000</span></div>
-          <div><h3>[Single 3 title]</h3><p>[Release date] · Single</p></div>
-          <div class="chips"><a class="chip" href="#">Spotify</a><a class="chip" href="#">Apple Music</a></div>
+          <img class="cover-art" src="images/single-say-you-love-me.jpg" alt="Say You Love Me cover art" loading="lazy">
+          <div><h3>Say You Love Me</h3><p>Single</p></div>
+          <div class="chips"><a class="chip" href="https://www.youtube.com/watch?v=I5Gi_8oKGFE" target="_blank" rel="noopener">Watch video</a><a class="chip" href="#listen">Stream</a></div>
+        </article>
+        <article class="single">
+          <img class="cover-art" src="images/single-lonely.jpg" alt="Lonely cover art" loading="lazy">
+          <div><h3>Lonely</h3><p>feat. Anna Yannessa</p></div>
+          <div class="chips"><a class="chip" href="https://www.youtube.com/watch?v=pnxxUVLotJY" target="_blank" rel="noopener">Watch video</a><a class="chip" href="#listen">Stream</a></div>
         </article>
       </div>
     </div>
@@ -282,10 +287,8 @@
         <a class="email" href="mailto:beeshinemusic@gmail.com">beeshinemusic@gmail.com</a>
       </div>
       <div class="socials">
-        <!-- TODO: social URLs -->
-        <a class="pill btn" href="#">Instagram</a>
-        <a class="pill btn" href="#">TikTok</a>
-        <a class="pill btn" href="#">YouTube</a>
+        <a class="pill btn" href="https://www.instagram.com/beeshinemusic" target="_blank" rel="noopener">Instagram</a>
+        <a class="pill btn" href="https://www.youtube.com/@BeeShineMusic/videos" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
     <div class="foot-bottom">
