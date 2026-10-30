@@ -21,6 +21,7 @@
     --muted: #5A5648;
     --display: 'Bowlby One', sans-serif;
     --marker: 'Permanent Marker', cursive;
+    --pad: clamp(44px, 5vw, 64px); /* space above/below each section */
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; }
@@ -30,7 +31,7 @@
   .wrap { max-width: 1240px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
   h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; }
   h2 { font-size: clamp(40px, 6vw, 72px); line-height: 1; }
-  section[id], footer[id] { scroll-margin-top: 80px; }
+  section[id], footer[id] { scroll-margin-top: 76px; }
 
   .btn { transition: transform .12s ease, box-shadow .12s ease; }
   .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink) !important; }
@@ -48,7 +49,7 @@
 
   /* Hero */
   .hero { background: var(--accent); border-bottom: 4px solid var(--ink); }
-  .hero .wrap { padding-top: 72px; padding-bottom: 80px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
+  .hero .wrap { padding-top: var(--pad); padding-bottom: calc(var(--pad) + 8px); display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
   .hero-text { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
   .eyebrow { margin: 0; font-weight: 700; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; }
   .hero h1 { font-size: clamp(64px, 11vw, 148px); line-height: .9; letter-spacing: -1px; }
@@ -66,7 +67,7 @@
   .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
 
   /* Videos */
-  #videos { padding-top: 96px; padding-bottom: 72px; }
+  #videos { padding-top: var(--pad); padding-bottom: var(--pad); }
   .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 40px; }
   .vcard { display: flex; flex-direction: column; gap: 14px; }
   a.thumb { display: block; transition: transform .15s ease; }
@@ -84,7 +85,7 @@
 
   /* Singles */
   .singles { background: var(--ink); color: var(--paper); border-top: 4px solid var(--ink); }
-  .singles .wrap { padding-top: 96px; padding-bottom: 96px; }
+  .singles .wrap { padding-top: var(--pad); padding-bottom: var(--pad); }
   .singles h2 { color: var(--accent); }
   .singles .note { margin: 0; font-family: var(--marker); font-size: 24px; color: var(--wing); }
   .single-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; }
@@ -101,7 +102,7 @@
 
   /* Listen */
   .listen { background: var(--wing); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
-  .listen .wrap { padding-top: 96px; padding-bottom: 96px; }
+  .listen .wrap { padding-top: var(--pad); padding-bottom: var(--pad); }
   .listen h2 { margin-bottom: 12px; }
   .listen .intro { margin: 0 0 40px; font-size: 19px; max-width: 560px; }
   .platform-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
@@ -115,7 +116,7 @@
   .platform small { display: block; font-size: 14px; color: var(--muted); }
 
   /* Past projects */
-  #history { padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px; }
+  #history { padding-top: var(--pad); padding-bottom: var(--pad); display: flex; flex-direction: column; gap: 40px; }
   .history-intro { display: flex; flex-direction: column; gap: 16px; }
   .history-intro h2 { overflow-wrap: anywhere; }
   .history-intro p { margin: 0; font-size: 19px; line-height: 1.55; max-width: 860px; }
@@ -134,7 +135,7 @@
 
   /* Footer */
   footer { background: var(--accent); border-top: 4px solid var(--ink); }
-  footer .wrap { padding-top: 80px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 48px; }
+  footer .wrap { padding-top: var(--pad); padding-bottom: 40px; display: flex; flex-direction: column; gap: 48px; }
   .foot-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; }
   .foot-top > div { display: flex; flex-direction: column; gap: 12px; flex: 1 1 400px; }
   footer h2 { font-size: clamp(36px, 5vw, 60px); }
