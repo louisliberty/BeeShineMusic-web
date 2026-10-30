@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BeeShine — Official Site</title>
+<meta name="description" content="BeeShine is a rapper from New Jersey: multi-syllabic bars at 96 BPM about relationships, emotions and life. Watch the videos and stream everywhere.">
+<meta property="og:title" content="BeeShine — Official Site">
+<meta property="og:description" content="Multi-syllabic rap out of New Jersey. Watch the videos and stream everywhere.">
+<meta property="og:image" content="images/logo.jpg">
+<link rel="icon" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:wght@400;500;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #F5D33A;   /* bee yellow */
+    --ink: #111111;
+    --paper: #FFFDF4;
+    --wing: #B9B8F5;     /* lavender from the logo's wings */
+    --muted: #5A5648;
+    --display: 'Bowlby One', sans-serif;
+    --marker: 'Permanent Marker', cursive;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; }
+  a { color: var(--ink); }
+  a:hover { color: #C8202A; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; }
+  h2 { font-size: clamp(40px, 6vw, 72px); line-height: 1; }
+  section[id], footer[id] { scroll-margin-top: 80px; }
+
+  .btn { transition: transform .12s ease, box-shadow .12s ease; }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink) !important; }
+  .pill { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border: 3px solid var(--ink); border-radius: 999px; font-weight: 700; font-size: 17px; text-decoration: none; }
+
+  /* Nav */
+  header { background: var(--ink); color: var(--paper); position: sticky; top: 0; z-index: 10; }
+  header nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--paper); }
+  .brand img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background: #fff; }
+  .brand span { font-family: var(--display); font-size: 24px; letter-spacing: 1px; }
+  .navlinks { display: flex; flex-wrap: wrap; gap: 24px; font-weight: 700; font-size: 15px; letter-spacing: .5px; text-transform: uppercase; }
+  .navlinks a { color: var(--paper); text-decoration: none; }
+  .navlinks a:hover { color: var(--paper); text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Hero */
+  .hero { background: var(--accent); border-bottom: 4px solid var(--ink); }
+  .hero .wrap { padding-top: 72px; padding-bottom: 80px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
+  .hero-text { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+  .eyebrow { margin: 0; font-weight: 700; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(64px, 11vw, 148px); line-height: .9; letter-spacing: -1px; }
+  .hero p.lede { margin: 0; font-size: 21px; line-height: 1.5; max-width: 540px; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 8px; }
+  .hero-art { flex: 1 1 340px; display: flex; justify-content: center; }
+  .hero-art img { width: 100%; max-width: 440px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%; border: 4px solid var(--ink); background: #fff; box-shadow: 10px 10px 0 var(--ink); transform: rotate(-4deg); }
+
+  /* Marquee */
+  .marquee { background: var(--ink); color: var(--accent); overflow: hidden; white-space: nowrap; padding: 14px 0; font-family: var(--display); font-size: 22px; letter-spacing: 2px; }
+  .marquee span { display: inline-block; padding-left: 100%; animation: scroll 30s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-100%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee span { animation: none; padding-left: 24px; } }
+
+  .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
+
+  /* Videos */
+  #videos { padding-top: 96px; padding-bottom: 72px; }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 40px; }
+  .vcard { display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: var(--ink); transition: transform .15s ease; }
+  .vcard:hover { transform: rotate(-1deg) translateY(-4px); color: var(--ink); }
+  .thumb { position: relative; aspect-ratio: 16 / 9; border: 4px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 8px 8px 0 var(--ink); background: var(--ink); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 76px; height: 76px; border-radius: 50%; background: var(--accent); border: 4px solid var(--ink); display: flex; align-items: center; justify-content: center; }
+  .time { position: absolute; right: 12px; bottom: 12px; background: var(--ink); color: var(--paper); font-weight: 700; font-size: 14px; padding: 4px 10px; border-radius: 8px; }
+  .vmeta { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .vmeta h3 { font-size: 26px; line-height: 1.1; }
+  .tag { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+
+  /* Singles */
+  .singles { background: var(--ink); color: var(--paper); border-top: 4px solid var(--ink); }
+  .singles .wrap { padding-top: 96px; padding-bottom: 96px; }
+  .singles h2 { color: var(--accent); }
+  .singles .note { margin: 0; font-family: var(--marker); font-size: 24px; color: var(--wing); }
+  .single-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; }
+  .single { display: flex; flex-direction: column; gap: 16px; }
+  .cover { aspect-ratio: 1 / 1; border: 3px dashed var(--wing); border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #1E1E1C; color: var(--wing); text-align: center; padding: 24px; }
+  .cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+  .single h3 { font-size: 24px; margin-bottom: 4px; }
+  .single p { margin: 0; font-size: 15px; color: #CFCBBE; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 2px solid var(--paper); border-radius: 999px; color: var(--paper); font-weight: 700; font-size: 14px; text-decoration: none; }
+  .chip:hover { background: var(--paper); color: var(--ink); }
+
+  /* Listen */
+  .listen { background: var(--wing); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
+  .listen .wrap { padding-top: 96px; padding-bottom: 96px; }
+  .listen h2 { margin-bottom: 12px; }
+  .listen .intro { margin: 0 0 40px; font-size: 19px; max-width: 560px; }
+  .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px; }
+  .platform { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 76px; padding: 0 24px; background: var(--paper); border: 3px solid var(--ink); border-radius: 16px; box-shadow: 4px 4px 0 var(--ink); text-decoration: none; color: var(--ink); }
+  .platform:hover { color: var(--ink); }
+  .platform strong { display: block; font-family: var(--display); font-weight: 400; font-size: 20px; }
+  .platform small { display: block; font-size: 14px; color: var(--muted); }
+
+  /* Past projects */
+  #history { padding-top: 96px; padding-bottom: 96px; display: flex; flex-wrap: wrap; gap: 48px; }
+  .history-intro { flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px; }
+  .history-intro p { margin: 0; font-size: 18px; line-height: 1.55; max-width: 420px; }
+  .history-list { flex: 999 1 560px; min-width: 0; border-top: 4px solid var(--ink); }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 22px 0; border-bottom: 2px solid var(--ink); }
+  .row .year { font-family: var(--display); font-size: 18px; min-width: 70px; }
+  .row .what { flex: 1 1 220px; min-width: 0; }
+  .row .what b { display: block; font-size: 20px; }
+  .row .what span { display: block; font-size: 15px; color: var(--muted); }
+  .row a { font-weight: 700; font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; }
+
+  /* Footer */
+  footer { background: var(--accent); border-top: 4px solid var(--ink); }
+  footer .wrap { padding-top: 80px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 48px; }
+  .foot-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; }
+  .foot-top > div { display: flex; flex-direction: column; gap: 12px; flex: 1 1 400px; }
+  footer h2 { font-size: clamp(36px, 5vw, 60px); }
+  .email { font-size: 22px; font-weight: 700; }
+  .socials { display: flex; flex-wrap: wrap; gap: 12px; }
+  .socials a { min-height: 48px; padding: 0 20px; background: var(--paper); box-shadow: 4px 4px 0 var(--ink); color: var(--ink); font-size: 16px; }
+  .foot-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 2px solid var(--ink); font-size: 14px; }
+  .foot-bottom .sig { font-family: var(--marker); font-size: 18px; }
+</style>
+</head>
+<body>
+
+<!--
+  EDITING GUIDE: links still to fill in are marked href="#" with a TODO comment.
+  Search this file for "TODO" to find them all.
+-->
+
+<header>
+  <nav class="wrap" aria-label="Main">
+    <a class="brand" href="#top"><img src="images/logo.jpg" alt=""><span>BEESHINE</span></a>
+    <div class="navlinks">
+      <a href="#videos">Videos</a>
+      <a href="#singles">Singles</a>
+      <a href="#listen">Listen</a>
+      <a href="#history">Past Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="eyebrow">New Jersey · 96 BPM · Multi-syllabic</p>
+        <h1>BEE<br>SHINE</h1>
+        <p class="lede">Fast, dense bars about the stuff that actually keeps you up at night: relationships, emotions, and the life in between.</p>
+        <div class="hero-ctas">
+          <a class="pill btn" href="#videos" style="background: var(--ink); color: var(--paper); box-shadow: 4px 4px 0 var(--paper);">
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
+            Watch the videos
+          </a>
+          <a class="pill btn" href="#listen" style="background: var(--paper); color: var(--ink); box-shadow: 4px 4px 0 var(--ink);">Stream now</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="images/logo.jpg" alt="BeeShine logo: a crowned cartoon bee in sunglasses holding a vinyl record">
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <span>I WANT IT ALL ✦ SAY YOU LOVE ME ✦ [VIDEO 1 TITLE] ✦ [VIDEO 2 TITLE] ✦ I WANT IT ALL ✦ SAY YOU LOVE ME ✦ [VIDEO 1 TITLE] ✦ [VIDEO 2 TITLE]</span>
+  </div>
+
+  <section class="wrap" id="videos">
+    <div class="section-head">
+      <h2>VIDEOS</h2>
+      <a href="#" style="font-weight: 700; font-size: 16px;"><!-- TODO: YouTube channel URL -->Full channel on YouTube →</a>
+    </div>
+    <div class="video-grid">
+      <a class="vcard" href="#"><!-- TODO: video URL -->
+        <div class="thumb">
+          <img src="images/video-i-want-it-all.jpg" alt="Still from I Want It All: BeeShine on a lake with mountains behind">
+          <span class="play"><svg width="28" height="28" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2.5v11l9-5.5z" fill="#111"/></svg></span>
+          <span class="time">2:56</span>
+        </div>
+        <div class="vmeta"><h3>I Want It All</h3><span class="tag">Official video</span></div>
+      </a>
+      <a class="vcard" href="#"><!-- TODO: video URL -->
+        <div class="thumb">
+          <img src="images/video-say-you-love-me.jpg" alt="Still from Say You Love Me: BeeShine in front of a chain-link fence">
+          <span class="play"><svg width="28" height="28" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2.5v11l9-5.5z" fill="#111"/></svg></span>
+          <span class="time">3:43</span>
+        </div>
+        <div class="vmeta"><h3>Say You Love Me</h3><span class="tag">Official video</span></div>
+      </a>
+      <a class="vcard" href="#"><!-- TODO: video URL + title -->
+        <div class="thumb">
+          <img src="images/video-silhouette.jpg" alt="Video still: silhouette in profile against sunlit water">
+          <span class="play"><svg width="28" height="28" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2.5v11l9-5.5z" fill="#111"/></svg></span>
+          <span class="time">3:30</span>
+        </div>
+        <div class="vmeta"><h3>[Video title]</h3><span class="tag">Official video</span></div>
+      </a>
+      <a class="vcard" href="#"><!-- TODO: video URL + title -->
+        <div class="thumb">
+          <img src="images/video-yellow.jpg" alt="Video still: BeeShine in a winter coat on a yellow background">
+          <span class="play"><svg width="28" height="28" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2.5v11l9-5.5z" fill="#111"/></svg></span>
+          <span class="time">2:21</span>
+        </div>
+        <div class="vmeta"><h3>[Video title]</h3><span class="tag">Official video</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="singles" id="singles">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>SINGLES</h2>
+        <p class="note">out now, everywhere</p>
+      </div>
+      <div class="single-grid">
+        <!-- TODO: replace each .cover placeholder with <img src="images/single-1.jpg" alt="..."> -->
+        <article class="single">
+          <div class="cover"><strong>[Single 1 cover art]</strong><span>Square, 3000×3000</span></div>
+          <div><h3>[Single 1 title]</h3><p>[Release date] · Single</p></div>
+          <div class="chips"><a class="chip" href="#">Spotify</a><a class="chip" href="#">Apple Music</a></div>
+        </article>
+        <article class="single">
+          <div class="cover"><strong>[Single 2 cover art]</strong><span>Square, 3000×3000</span></div>
+          <div><h3>[Single 2 title]</h3><p>[Release date] · Single</p></div>
+          <div class="chips"><a class="chip" href="#">Spotify</a><a class="chip" href="#">Apple Music</a></div>
+        </article>
+        <article class="single">
+          <div class="cover"><strong>[Single 3 cover art]</strong><span>Square, 3000×3000</span></div>
+          <div><h3>[Single 3 title]</h3><p>[Release date] · Single</p></div>
+          <div class="chips"><a class="chip" href="#">Spotify</a><a class="chip" href="#">Apple Music</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="listen" id="listen">
+    <div class="wrap">
+      <h2>LISTEN</h2>
+      <p class="intro">Pick your platform. Follow BeeShine so new drops land in your feed first.</p>
+      <div class="platform-grid">
+        <!-- TODO: artist profile URLs -->
+        <a class="platform btn" href="#"><span><strong>Spotify</strong><small>Follow &amp; stream</small></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a class="platform btn" href="#"><span><strong>Apple Music</strong><small>Add to library</small></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a class="platform btn" href="#"><span><strong>YouTube Music</strong><small>Stream</small></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a class="platform btn" href="#"><span><strong>Amazon Music</strong><small>Stream</small></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a class="platform btn" href="#"><span><strong>TIDAL</strong><small>Stream</small></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a class="platform btn" href="#"><span><strong>SoundCloud</strong><small>Follow</small></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="history">
+    <div class="history-intro">
+      <h2>BEFORE THE BEE</h2>
+      <p>Long before going solo, BeeShine was putting in reps with crews like weatherPROOF. The catalog that built the flow.</p>
+    </div>
+    <div class="history-list">
+      <!-- TODO: past projects -->
+      <div class="row"><span class="year">[Year]</span><span class="what"><b>[Project title]</b><span>weatherPROOF · [Album / EP / Mixtape]</span></span><a href="#">Listen →</a></div>
+      <div class="row"><span class="year">[Year]</span><span class="what"><b>[Project title]</b><span>weatherPROOF · [Album / EP / Mixtape]</span></span><a href="#">Listen →</a></div>
+      <div class="row"><span class="year">[Year]</span><span class="what"><b>[Project title]</b><span>[Other group] · [Album / EP / Mixtape]</span></span><a href="#">Listen →</a></div>
+      <div class="row"><span class="year">[Year]</span><span class="what"><b>[Project title]</b><span>[Other group] · [Album / EP / Mixtape]</span></span><a href="#">Listen →</a></div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <h2>BOOKING &amp; FEATURES</h2>
+        <a class="email" href="#"><!-- TODO: mailto:your@email -->[booking@beeshinemusic.com]</a>
+      </div>
+      <div class="socials">
+        <!-- TODO: social URLs -->
+        <a class="pill btn" href="#">Instagram</a>
+        <a class="pill btn" href="#">TikTok</a>
+        <a class="pill btn" href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 BeeShine · BeeShineMusic.com</span>
+      <span class="sig">stay buzzin'</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
