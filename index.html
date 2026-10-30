@@ -23,7 +23,6 @@
     --marker: 'Permanent Marker', cursive;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
   body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; }
   a { color: var(--ink); }
   a:hover { color: #C8202A; }
@@ -116,12 +115,13 @@
   .platform small { display: block; font-size: 14px; color: var(--muted); }
 
   /* Past projects */
-  #history { padding-top: 96px; padding-bottom: 96px; display: flex; flex-wrap: wrap; gap: 48px; }
-  .history-intro { flex: 1 1 320px; display: flex; flex-direction: column; gap: 16px; }
-  .history-intro p { margin: 0; font-size: 18px; line-height: 1.55; max-width: 420px; }
-  .history-body { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+  #history { padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 40px; }
+  .history-intro { display: flex; flex-direction: column; gap: 16px; }
+  .history-intro h2 { overflow-wrap: anywhere; }
+  .history-intro p { margin: 0; font-size: 19px; line-height: 1.55; max-width: 860px; }
+  .history-body { min-width: 0; display: flex; flex-direction: column; gap: 24px; }
   .label { margin: 0; padding-top: 16px; border-top: 4px solid var(--ink); font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
-  .album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 32px; margin-bottom: 24px; }
+  .album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 40px; margin-bottom: 24px; max-width: 900px; }
   .album { display: flex; flex-direction: column; gap: 14px; }
   .album-art { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 3px solid var(--ink); border-radius: 14px; box-shadow: 6px 6px 0 var(--ink); }
   .album h3 { font-size: 26px; line-height: 1.1; }
@@ -358,29 +358,59 @@
   });
 </script>
 <script>
-  // Keep the scroll position steady on refresh: the browser restores it before the
-  // headline fonts load, then the text above shifts. Re-apply it once fonts are ready.
+  // Menu links: scroll smoothly without adding "#section" to the address,
+  // so a refresh doesn't make the browser jump to that section.
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var el = id && document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Keep your place on refresh. Instead of a raw pixel position (which drifts when
+  // fonts and images load), remember which block was at the top of the screen and
+  // how far into it you were, then return there once the page has settled.
   (function () {
     if (!('scrollRestoration' in history)) return;
     history.scrollRestoration = 'manual';
-    var key = 'beeshine-scroll', saved = null, userMoved = false;
-    addEventListener('pagehide', function () { try { sessionStorage.setItem(key, String(scrollY)); } catch (e) {} });
-    try { saved = sessionStorage.getItem(key); } catch (e) {}
-    if (saved === null) return;
-    var y = Number(saved);
+    var KEY = 'beeshine-place';
+    var SEL = 'main > section, main > div, footer, h2, .vcard, .single, .platform, .album, .label, .history-intro';
+    function blocks() { return Array.prototype.slice.call(document.querySelectorAll(SEL)); }
+
+    addEventListener('pagehide', function () {
+      var list = blocks(), best = -1, bestTop = -Infinity;
+      list.forEach(function (el, i) {
+        var top = el.getBoundingClientRect().top;
+        if (top <= 1 && top > bestTop) { bestTop = top; best = i; }
+      });
+      try { sessionStorage.setItem(KEY, JSON.stringify({ i: best, off: best < 0 ? scrollY : -bestTop, y: scrollY })); } catch (e) {}
+    });
+
+    var saved = null;
+    try { saved = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) {}
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    if (!saved) return;
+
+    var moved = false;
     ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (t) {
-      addEventListener(t, function () { userMoved = true; }, { once: true, passive: true });
+      addEventListener(t, function () { moved = true; }, { once: true, passive: true });
     });
     function restore() {
-      if (userMoved) return;
+      if (moved) return;
+      var el = saved.i >= 0 ? blocks()[saved.i] : null;
+      var y = el ? el.getBoundingClientRect().top + scrollY + saved.off : saved.y;
       var root = document.documentElement, prev = root.style.scrollBehavior;
       root.style.scrollBehavior = 'auto';
       scrollTo(0, y);
       root.style.scrollBehavior = prev;
     }
     restore();
+    document.addEventListener('DOMContentLoaded', restore);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(restore);
-    addEventListener('load', restore);
+    addEventListener('load', function () { restore(); setTimeout(restore, 250); });
   })();
 </script>
 <script>
