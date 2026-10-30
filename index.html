@@ -145,6 +145,17 @@
   .foot-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 2px solid var(--ink); font-size: 14px; }
   .foot-bottom .sig { font-family: var(--marker); font-size: 18px; }
 </style>
+<script>
+  // On a refresh, keep the page hidden for a moment until the fonts are ready and
+  // the scroll position is set, so you don't see it jump. Never longer than 1s.
+  try {
+    if (sessionStorage.getItem('beeshine-place')) {
+      document.documentElement.classList.add('restoring');
+      setTimeout(function () { document.documentElement.classList.remove('restoring'); }, 1000);
+    }
+  } catch (e) {}
+</script>
+<style>.restoring body { visibility: hidden; }</style>
 </head>
 <body>
 
@@ -393,7 +404,8 @@
     var saved = null;
     try { saved = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) {}
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-    if (!saved) return;
+    function reveal() { document.documentElement.classList.remove('restoring'); }
+    if (!saved) { reveal(); return; }
 
     var moved = false;
     ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (t) {
@@ -409,6 +421,14 @@
       root.style.scrollBehavior = prev;
     }
     restore();
+    // Wait for the actual web fonts (not just "fonts ready"), then set the position and show the page.
+    if (document.fonts && document.fonts.load) {
+      Promise.all([
+        document.fonts.load('400 1em "Bowlby One"'),
+        document.fonts.load('400 1em "DM Sans"'),
+        document.fonts.load('700 1em "DM Sans"')
+      ]).then(function () { restore(); reveal(); }, function () { restore(); reveal(); });
+    } else { reveal(); }
     document.addEventListener('DOMContentLoaded', restore);
     if (document.fonts) {
       if (document.fonts.ready) document.fonts.ready.then(restore);
