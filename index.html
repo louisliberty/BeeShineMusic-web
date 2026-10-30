@@ -340,5 +340,31 @@
     });
   });
 </script>
+<script>
+  // Keep the scroll position steady on refresh: the browser restores it before the
+  // headline fonts load, then the text above shifts. Re-apply it once fonts are ready.
+  (function () {
+    if (!('scrollRestoration' in history)) return;
+    history.scrollRestoration = 'manual';
+    var key = 'beeshine-scroll', saved = null, userMoved = false;
+    addEventListener('pagehide', function () { try { sessionStorage.setItem(key, String(scrollY)); } catch (e) {} });
+    try { saved = sessionStorage.getItem(key); } catch (e) {}
+    if (saved === null) return;
+    var y = Number(saved);
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (t) {
+      addEventListener(t, function () { userMoved = true; }, { once: true, passive: true });
+    });
+    function restore() {
+      if (userMoved) return;
+      var root = document.documentElement, prev = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      scrollTo(0, y);
+      root.style.scrollBehavior = prev;
+    }
+    restore();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(restore);
+    addEventListener('load', restore);
+  })();
+</script>
 </body>
 </html>
