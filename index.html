@@ -154,7 +154,7 @@
       <a href="#videos">Videos</a>
       <a href="#singles">Singles</a>
       <a href="#listen">Listen</a>
-      <a href="#history">weatherPROOF Years</a>
+      <a href="#history">weatherPROOF</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
@@ -276,7 +276,7 @@
 
   <section class="wrap" id="history">
     <div class="history-intro">
-      <h2>weatherPROOF Years</h2>
+      <h2>WEATHERPROOF YEARS</h2>
       <p>Before going solo, BeeShine (then known as <b>Event</b>) and fellow MC <b>Remsa</b> made up the duo <b>weatherPROOF</b>.</p>
     </div>
     <div class="history-body">
@@ -409,8 +409,18 @@
     }
     restore();
     document.addEventListener('DOMContentLoaded', restore);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(restore);
+    if (document.fonts) {
+      if (document.fonts.ready) document.fonts.ready.then(restore);
+      document.fonts.addEventListener && document.fonts.addEventListener('loadingdone', restore);
+    }
     addEventListener('load', function () { restore(); setTimeout(restore, 250); });
+    // Some browsers (Safari) swap in the web fonts late and don't compensate,
+    // so for the first few seconds re-apply the position whenever the page height changes.
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(function () { restore(); });
+      ro.observe(document.body);
+      setTimeout(function () { ro.disconnect(); }, 4000);
+    }
   })();
 </script>
 <script>
