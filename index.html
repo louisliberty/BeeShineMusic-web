@@ -113,7 +113,7 @@
   .history-intro p { margin: 0; font-size: 18px; line-height: 1.55; max-width: 420px; }
   .history-list { flex: 999 1 560px; min-width: 0; border-top: 4px solid var(--ink); }
   .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 22px 0; border-bottom: 2px solid var(--ink); }
-  .row .year { font-family: var(--display); font-size: 18px; min-width: 70px; }
+  .row-art { width: 88px; height: 88px; object-fit: cover; border: 3px solid var(--ink); border-radius: 10px; box-shadow: 4px 4px 0 var(--ink); flex: none; }
   .row .what { flex: 1 1 220px; min-width: 0; }
   .row .what b { display: block; font-size: 20px; }
   .row .what span { display: block; font-size: 15px; color: var(--muted); }
@@ -269,14 +269,24 @@
   <section class="wrap" id="history">
     <div class="history-intro">
       <h2>BEFORE THE BEE</h2>
-      <p>Long before going solo, BeeShine was putting in reps with crews like weatherPROOF. The catalog that built the flow.</p>
+      <p>Before going solo, BeeShine (then known as <b>Event</b>) and fellow MC <b>Remsa</b> made up the duo <b>weatherPROOF</b>. Two albums and a whole lot of reps that built the flow.</p>
     </div>
     <div class="history-list">
-      <!-- TODO: past projects -->
-      <div class="row"><span class="year">[Year]</span><span class="what"><b>[Project title]</b><span>weatherPROOF · [Album / EP / Mixtape]</span></span><a href="#">Listen →</a></div>
-      <div class="row"><span class="year">[Year]</span><span class="what"><b>[Project title]</b><span>weatherPROOF · [Album / EP / Mixtape]</span></span><a href="#">Listen →</a></div>
-      <div class="row"><span class="year">[Year]</span><span class="what"><b>[Project title]</b><span>[Other group] · [Album / EP / Mixtape]</span></span><a href="#">Listen →</a></div>
-      <div class="row"><span class="year">[Year]</span><span class="what"><b>[Project title]</b><span>[Other group] · [Album / EP / Mixtape]</span></span><a href="#">Listen →</a></div>
+      <div class="row">
+        <img class="row-art" src="images/wp-dirty-naturals.jpg" alt="weatherPROOF Dirty Naturals album cover" loading="lazy">
+        <span class="what"><b>Dirty Naturals</b><span>weatherPROOF · Album · Released January 2013</span></span>
+        <a href="https://weatherproofmusic.bandcamp.com/album/dirty-naturals" target="_blank" rel="noopener">Listen on Bandcamp →</a>
+      </div>
+      <div class="row">
+        <img class="row-art" src="https://i.ytimg.com/vi/jOsDF2GZ9BU/mqdefault.jpg" alt="Yellow Brick Road music video thumbnail" loading="lazy">
+        <span class="what"><b>Yellow Brick Road</b><span>weatherPROOF feat. DJ A-Sharp · Music video · Prod. by Muse:Ack · from Dirty Naturals</span></span>
+        <a href="https://www.youtube.com/watch?v=jOsDF2GZ9BU" target="_blank" rel="noopener">Watch on YouTube →</a>
+      </div>
+      <div class="row">
+        <img class="row-art" src="images/wp-metropolis.jpg" alt="weatherPROOF Metropolis album cover" loading="lazy">
+        <span class="what"><b>Metropolis</b><span>weatherPROOF · Album · Released January 2009</span></span>
+        <a href="https://weatherproofmusic.bandcamp.com/album/metropolis-10th-anniversary-release" target="_blank" rel="noopener">Listen on Bandcamp →</a>
+      </div>
     </div>
   </section>
 </main>
